@@ -9,7 +9,7 @@ const Page = async ({ params, searchParams }: PageProps): Promise<React.ReactEle
     const { res } = await axiosClient({
         method: 'get',
         url: 'movies-entries',
-        params: [{ key: 't', value: (await params).movie }],
+        params: [{ key: 't', value: (await params).slug }],
     });
     console.log({ params: await params, searchParams: await searchParams, res });
 
