@@ -11,7 +11,7 @@ export type AxiosParamsProps = {
 
 export type AxiosProps = {
     method: 'get' | 'post';
-    url: 'movies-entries' | 'movies-posters' | string;
+    url: 'movies-entries' | 'movies-posters' | 'next-api' | string;
     params?: AxiosParamsProps[];
     options?: { token?: string } & AxiosOptionsProps;
 };
@@ -34,9 +34,17 @@ export const axiosClient = async ({ method, url, params }: AxiosProps) => {
     if (url === 'movies-posters') {
         axiosUrl = `${process.env.NEXT_PUBLIC_API_POSTER_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
     }
+    if (url === 'next-api') {
+        axiosUrl = process.env?.NEXT_PUBLIC_NEXT_API_URL ?? '';
+    }
     if (params && params?.length > 0) {
-        params.forEach(({ key, value }: AxiosParamsProps) => {
-            axiosUrl += `&${key}=${value}`;
+        params.forEach(({ key, value }: AxiosParamsProps, i: number) => {
+            let divider = '&';
+            if (url !== 'movies-entries' && url !== 'movies-posters' && i === 0) {
+                divider = '?';
+            }
+
+            axiosUrl += `${divider}${key}=${value}`;
         });
     }
 
