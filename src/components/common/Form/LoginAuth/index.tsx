@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-import { axiosClient } from '@/libs/fetcher';
+import { useUserStateContext } from '@/store/Context';
 
 import { useForm } from 'react-hook-form';
 
@@ -24,39 +24,25 @@ export type LoginAuthProps = {};
 
 const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
     const router = useRouter();
+    const { userLoginHandler } = useUserStateContext();
 
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<AuthLoginFieldsFormProps>();
 
     const submitHandler = async (data: AuthLoginFieldsFormProps) => {
         console.log('submit', data);
 
-        const { res } = await axiosClient({
-            method: 'get',
-            url: 'auth/login',
-            params: [
-                {
-                    key: 'email',
-                    value: data.email,
-                },
-                {
-                    key: 'password',
-                    value: data.password,
-                },
-            ],
+        userLoginHandler({
+            email: data.email,
+            password: data.password,
+            onSuccess: (username) => {
+                router.push(`/profile/${username}`);
+            },
         });
-
-        console.log(res);
-
-        if (res.status === 'success') {
-            router.push(`/profile/${res.data.username}`);
-        }
     };
-
-    console.log(errors);
 
     return (
         <form onSubmit={handleSubmit(submitHandler)}>

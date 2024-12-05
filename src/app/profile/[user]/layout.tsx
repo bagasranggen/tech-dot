@@ -3,27 +3,20 @@
 import React, { PropsWithChildren } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { axiosClient } from '@/libs/fetcher';
+import { useUserStateContext } from '@/store/Context';
 
 import Button from '@/components/common/Button';
 
 export default function Layout({ children }: Readonly<PropsWithChildren>) {
     const router = useRouter();
-
-    const logoutHandler = async () => {
-        const { res } = await axiosClient({ method: 'get', url: 'auth/logout' });
-
-        if (res.status === 'success') {
-            router.push('/');
-        }
-    };
+    const { userLogoutHandler } = useUserStateContext();
 
     return (
         <>
             <Button
                 as="button"
                 type="button"
-                onClick={logoutHandler}>
+                onClick={() => userLogoutHandler({ onSuccess: () => router.push('/') })}>
                 LOGOUT
             </Button>
             {children}
