@@ -31,6 +31,7 @@ export const SearchData = async ({
     return {
         entries: {
             search: (search as string) ?? '',
+            movies: res.Search,
         },
     };
 };
