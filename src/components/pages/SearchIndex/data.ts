@@ -26,7 +26,7 @@ export const SearchData = async ({
     // Search by category "type"
     // movie, series, episode
 
-    // console.log(res);
+    console.log(res);
 
     return {
         entries: {
