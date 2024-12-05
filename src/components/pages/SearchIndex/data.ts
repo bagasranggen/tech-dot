@@ -2,6 +2,7 @@ import { PageProps } from '@/libs/@types';
 import { axiosClient, AxiosParamsProps } from '@/libs/fetcher';
 
 import { SearchIndexProps } from '@/components/pages/SearchIndex/index';
+import { MOVIE_CATEGORIES } from '@/libs/mock';
 
 export const SearchData = async ({
     searchParams,
@@ -32,6 +33,7 @@ export const SearchData = async ({
         entries: {
             search: (search as string) ?? '',
             movies: res.Search,
+            categories: MOVIE_CATEGORIES,
         },
     };
 };

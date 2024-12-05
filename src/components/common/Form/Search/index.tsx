@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useForm } from 'react-hook-form';
 
 import Input from '@/components/common/Input';
-import Button from '@/components/common/Button';
+// import Button from '@/components/common/Button';
 
 const SEARCH_FIELD_NAME = {
     SEARCH: 'search',
@@ -14,14 +14,17 @@ const SEARCH_FIELD_NAME = {
 
 export type SearchFieldsFormProps = Record<(typeof SEARCH_FIELD_NAME)[keyof typeof SEARCH_FIELD_NAME], string>;
 
-export type SearchProps = {};
+export type SearchProps = {
+    query?: string;
+};
 
-const Search = ({}: SearchProps): React.ReactElement => {
+const Search = ({ query }: SearchProps): React.ReactElement => {
     const router = useRouter();
 
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm<SearchFieldsFormProps>();
 
@@ -31,24 +34,26 @@ const Search = ({}: SearchProps): React.ReactElement => {
         router.push(`/search?q=${search}`);
     };
 
+    useEffect(() => {
+        if (!query) return;
+
+        setValue(SEARCH_FIELD_NAME.SEARCH, query);
+    }, [query, setValue]);
+
     return (
         <form onSubmit={handleSubmit(submitHandler)}>
-            <Input
+            <Input.Rounded
                 type="search"
-                placeholder="Search..."
+                placeholder="Search movies..."
+                size="lg"
+                className="text-center"
+                error={errors?.[SEARCH_FIELD_NAME.SEARCH]?.message}
                 hook={{
                     register,
                     name: SEARCH_FIELD_NAME.SEARCH,
                     required: true,
                 }}
             />
-            {errors[SEARCH_FIELD_NAME.SEARCH] && errors[SEARCH_FIELD_NAME.SEARCH]?.message}
-
-            <Button
-                as="button"
-                type="submit">
-                Search
-            </Button>
         </form>
     );
 };

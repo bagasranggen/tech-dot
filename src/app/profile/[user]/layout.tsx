@@ -1,25 +1,42 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { useRouter } from 'next/navigation';
 
+import { Col, Container, Row } from 'react-bootstrap';
+
+import Navigation from '@/components/layout/Navigation';
+import Button from '@/components/common/Button';
+import { PROFILE_NAVIGATION } from '@/libs/mock';
 import { useUserStateContext } from '@/store/Context';
 
-import Button from '@/components/common/Button';
-
 export default function Layout({ children }: Readonly<PropsWithChildren>) {
-    const router = useRouter();
-    const { userLogoutHandler } = useUserStateContext();
+    const { user } = useUserStateContext();
 
     return (
         <>
-            <Button
-                as="button"
-                type="button"
-                onClick={() => userLogoutHandler({ onSuccess: () => router.push('/') })}>
-                LOGOUT
-            </Button>
-            {children}
+            <Navigation hasLogout />
+
+            <Container className="mt-5">
+                <Row>
+                    <Col md={4}>
+                        <ul className="list-unstyled">
+                            {PROFILE_NAVIGATION.map((item, i: number) => {
+                                return (
+                                    <li key={i}>
+                                        <Button
+                                            as="link"
+                                            className="text-uppercase fls 18 fls-3 fc-dark"
+                                            href={`/profile/${user?.username}/${item.href}`}>
+                                            {item.label}
+                                        </Button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </Col>
+                    <Col md={8}>{children}</Col>
+                </Row>
+            </Container>
         </>
     );
 }

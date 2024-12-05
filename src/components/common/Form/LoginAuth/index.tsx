@@ -33,8 +33,6 @@ const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
     } = useForm<AuthLoginFieldsFormProps>();
 
     const submitHandler = async (data: AuthLoginFieldsFormProps) => {
-        console.log('submit', data);
-
         userLoginHandler({
             email: data.email,
             password: data.password,
@@ -46,30 +44,44 @@ const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
 
     return (
         <form onSubmit={handleSubmit(submitHandler)}>
-            <Input
+            <Input.Rounded
                 type="email"
-                placeholder="email"
+                placeholder="Email"
+                className="text-center"
                 hook={{
                     register,
                     name: AUTH_LOGIN_FIELD_NAME.EMAIL,
-                    // required: true,
+                    required: true,
                 }}
             />
 
-            <Input
+            <Input.Rounded
                 type="password"
                 placeholder="Password"
+                className="mt-1 text-center"
                 hook={{
                     register,
                     name: AUTH_LOGIN_FIELD_NAME.PASSWORD,
+                    required: true,
                 }}
             />
 
-            <Button
-                as="button"
-                type="submit">
-                submit
-            </Button>
+            <Button.Container
+                className="mt-4 d-flex justify-content-center"
+                buttons={[
+                    {
+                        children: (
+                            <Button.Main
+                                as="button"
+                                variant="rounded"
+                                color="primary"
+                                type="submit">
+                                Submit
+                            </Button.Main>
+                        ),
+                    },
+                ]}
+            />
         </form>
     );
 };
