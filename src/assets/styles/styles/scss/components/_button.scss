@@ -1,0 +1,15 @@
+.btn {
+    &--rounded {
+        @include btn-rounded;
+        @include btn-rounded-size();
+
+        padding: 0.75rem 3rem;
+
+        &.btn {
+            &--primary {
+                background-color: $dot-primary;
+                color: $dot-light;
+            }
+        }
+    }
+}

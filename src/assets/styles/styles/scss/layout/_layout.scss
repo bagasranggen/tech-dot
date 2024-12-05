@@ -1,0 +1,61 @@
+.ts {
+	&--margin,
+	&--padding {
+		&.ts--primary {
+			@extend %position-relative;
+
+			&:before {
+				@extend %position-absolute;
+
+				left: 0;
+				width: 100%;
+				height: var(--bs-navbar-height);
+				background-color: $dot-primary;
+				pointer-events: none;
+			}
+		}
+
+		&:not([style]) {
+			&.ts--primary {
+				content: '';
+			}
+		}
+	}
+
+	&--margin {
+		margin-top: var(--bs-navbar-height);
+
+		&.ts--primary {
+			&:before {
+				top: calc(var(--bs-navbar-height) * -1);
+			}
+		}
+	}
+
+	&--padding {
+		padding-top: var(--bs-navbar-height);
+
+		&.ts--primary {
+			&:before {
+				top: 0;
+			}
+		}
+	}
+}
+
+//.navbar ~ main {
+//	min-height: calc(100vh - var(--bs-footer-height));
+//}
+
+.section {
+	&--login {
+		@extend %d-flex, %flex-column, %justify-content-center;
+
+		padding-top: 15rem;
+		padding-bottom: 15rem;
+	}
+
+	&[class*=admin] {
+		min-height: calc(100vh - var(--bs-footer-height));
+	}
+}

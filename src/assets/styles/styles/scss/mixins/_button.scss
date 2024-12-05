@@ -1,0 +1,7 @@
+@mixin btn-rounded {
+    border-radius: var(--input-rounded);
+}
+
+@mixin btn-rounded-size($size: 3rem) {
+    --input-rounded: #{$size};
+}

@@ -1,0 +1,32 @@
+.card {
+    &-thumbnail {
+        @extend %position-relative;
+
+        [class*='oly--'] {
+            &:before {
+                z-index: 1;
+            }
+        }
+
+        &__icon {
+            @extend %position-absolute;
+
+            right: 1rem;
+            top: 1rem;
+            color: $dot-light;
+            z-index: 2;
+        }
+
+        @include media-breakpoint-up(md) {
+            h4 {
+                @include make-transition(color);
+            }
+
+            @include hover() {
+                h4 {
+                    color: $dot-secondary;
+                }
+            }
+        }
+    }
+}
