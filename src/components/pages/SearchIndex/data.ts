@@ -1,18 +1,36 @@
-import { axiosClient } from '@/libs/fetcher';
 import { PageProps } from '@/libs/@types';
+import { axiosClient, AxiosParamsProps } from '@/libs/fetcher';
 
-export const SearchData = async ({ searchParams }: { uri: string } & Pick<PageProps, 'searchParams'>) => {
-    // const { res } = await axiosClient({
-    //     method: 'get',
-    //     url: 'movies-entries',
-    //     params: [{ key: 's', value: searchParams.q  }],
-    // });
+import { SearchIndexProps } from '@/components/pages/SearchIndex/index';
 
-    // const {} = await axiosClient({method:'get', url:})
+export const SearchData = async ({
+    searchParams,
+}: { uri?: string } & Pick<PageProps, 'searchParams'>): Promise<SearchIndexProps> => {
+    const search = (await searchParams)?.q;
+    const type = (await searchParams)?.type;
 
-    console.log(searchParams);
+    let movieSearchParams: AxiosParamsProps[] = [];
+    if (typeof search === 'string') {
+        movieSearchParams = [...movieSearchParams, { key: 's', value: search }];
+    }
+    if (typeof type === 'string') {
+        movieSearchParams = [...movieSearchParams, { key: 'type', value: type }];
+    }
+
+    const { res } = await axiosClient({
+        method: 'get',
+        url: 'movies-entries',
+        params: movieSearchParams,
+    });
+
+    // Search by category "type"
+    // movie, series, episode
+
+    // console.log(res);
 
     return {
-        entries: {},
+        entries: {
+            search: (search as string) ?? '',
+        },
     };
 };

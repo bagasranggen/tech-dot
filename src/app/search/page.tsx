@@ -1,29 +1,16 @@
 import React from 'react';
 
 import { PageProps } from '@/libs/@types';
-import { axiosClient } from '@/libs/fetcher';
+
 import { SearchData } from '@/components/pages/SearchIndex/data';
+import SearchIndex from '@/components/pages/SearchIndex';
 
 const Page = async ({ searchParams }: PageProps): Promise<React.ReactElement> => {
-    const search = (await searchParams)?.q;
+    const { entries } = await SearchData({ searchParams: searchParams });
 
-    // const {} = SearchData({ searchParams: searchParams });
+    console.log(entries);
 
-    // console.log(searchParams);
-
-    // const {res} = await axiosClient({ method: 'get', url: 'next-api', params:[{
-    // q: searchParams
-    // }] });
-
-    // const { res } = await axiosClient({
-    //     method: 'get',
-    //     url: 'movies-entries',
-    //     params: [{ key: 's', value: search as string }],
-    // });
-    //
-    // console.log(res);
-
-    return <h1>Search: {search}</h1>;
+    return <SearchIndex entries={entries} />;
 };
 
 export default Page;

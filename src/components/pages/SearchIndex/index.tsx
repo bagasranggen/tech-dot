@@ -2,12 +2,12 @@ import React from 'react';
 
 export type SearchIndexProps = {
     entries: {
-        searchQuery?: string;
+        search?: string;
     };
 };
 
 const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
-    return <h1>Search: {entries.searchQuery}</h1>;
+    return <h1>Search: {entries.search}</h1>;
 };
 
 export default SearchIndex;
