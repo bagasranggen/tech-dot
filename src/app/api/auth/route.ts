@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
         // Handle success login
         if (selectedUser && selectedUser.password === password) {
             token = createMockToken();
-            cookieStore.set(COOKIE_LOGIN_KEY, createMockToken());
+            cookieStore.set(COOKIE_LOGIN_KEY, selectedUser.username);
         }
     }
 
