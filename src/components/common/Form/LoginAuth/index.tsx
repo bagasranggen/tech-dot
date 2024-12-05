@@ -13,7 +13,7 @@ import Button from '@/components/common/Button';
 const AUTH_LOGIN_FIELD_NAME = {
     EMAIL: 'email',
     PASSWORD: 'password',
-};
+} as const;
 
 export type AuthLoginFieldsFormProps = Record<
     (typeof AUTH_LOGIN_FIELD_NAME)[keyof typeof AUTH_LOGIN_FIELD_NAME],
