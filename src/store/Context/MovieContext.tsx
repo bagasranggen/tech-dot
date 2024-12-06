@@ -38,7 +38,7 @@ export const MovieStateContextProvider = ({ children }: { children: React.ReactN
                     params: [{ key: 'i', value: item }],
                 });
 
-                if (res.Response.toLowerCase() === 'true') {
+                if (res?.Response?.toLowerCase() === 'true') {
                     tmp.push(createMovieItem(res, moviesLikeId));
                 }
             })
