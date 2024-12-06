@@ -1,0 +1,22 @@
+.btn {
+    &--rounded {
+        @extend %text-uppercase, %fls-3;
+        @include btn-rounded;
+        @include btn-rounded-size();
+
+        padding: 0.75rem 3rem;
+
+        &.btn {
+            &--primary {
+                background-color: $dot-primary;
+                color: $light;
+
+                @include media-breakpoint-up(lg) {
+                    @include hover() {
+                        background-color: lighten($dot-primary, 10);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@include make-font-families();
+@include make-font-sizes();
+@include make-font-weights();
+@include make-font-weights();
+@include make-font-letter-spacings();
+
+%base-heading {
+    font-weight: 800;
+}
+
+%base-typography {
+    @extend %ff-roboto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    @extend %base-heading;
+
+    line-height: 1.4;
+    margin-bottom: 25px;
+
+    @include media-breakpoint-up(lg) {
+        line-height: 1.7;
+    }
+}
+
+h2 {
+    //font-size: 3rem;
+}
+
+h3 {
+    //font-size: 2.5rem;
+}
+
+h4,
+h5 {
+    //font-size: 2rem;
+}
+
+@include media-breakpoint-up(lg) {
+    h1,
+    h2 {
+        //line-height: 1.1;
+    }
+
+    h1 {
+        //font-size: 5rem;
+    }
+
+    h2 {
+        //font-size: 4rem;
+    }
+
+    h3 {
+        //font-size: 2.7rem;
+    }
+
+    h4,
+    h5 {
+        //font-size: 2.3rem;
+    }
+}

@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
         status: selectedUser ? 'success' : 'error',
-        message: !selectedUser ? 'Cannot find user' : '',
-        user: selectedUser,
+        data: {
+            message: !selectedUser ? 'Cannot find user' : '',
+            user: selectedUser,
+        },
     });
 }

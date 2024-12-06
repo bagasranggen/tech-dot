@@ -1,0 +1,48 @@
+.card {
+    &-thumbnail {
+        @extend %position-relative;
+
+        [class*='oly--'] {
+            &:before {
+                z-index: 1;
+            }
+        }
+
+        &__icon {
+            @extend %position-absolute;
+
+            right: 1rem;
+            top: 1rem;
+            color: $dot-light;
+            z-index: 2;
+
+            @include media-breakpoint-up(lg) {
+                @include hover() {
+                    color: lighten($dot-secondary, 10);
+                }
+            }
+
+            &--active {
+                color: $dot-secondary;
+            }
+        }
+
+        &__title {
+            @extend %fs-18, %fls-1, %fc-dark, %fw-200, %text-uppercase, %mb-0, %mt-1;
+
+            line-height: 1.2;
+        }
+
+        @include media-breakpoint-up(md) {
+            h4 {
+                @include make-transition(color);
+            }
+
+            @include hover() {
+                h4 {
+                    color: $dot-secondary;
+                }
+            }
+        }
+    }
+}

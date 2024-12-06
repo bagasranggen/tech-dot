@@ -1,0 +1,99 @@
+// Color
+$dot-primary: #89a8b2;
+$dot-secondary: #e38e49;
+$dot-light: #e5e1da;
+$dot-light-rgb: 229, 225, 218;
+$dot-dark: #153448;
+$dot-dark-rgb: 21, 52, 72;
+
+// Reset
+$font-size-base: 1.6rem;
+$line-height-base: 1.8;
+
+// Typography
+$font-sets: (
+    roboto: (
+        'Roboto',
+    ),
+);
+
+// Spacing
+$spacing: 15;
+$max: 6rem;
+$spacer: 1rem !default;
+$spacers: make-space($spacing);
+
+// Navbar
+$navbar-height: 10rem;
+$navbar-height-mobile: 7.5rem;
+$navbar-padding-y: 1.5rem;
+$navbar-link-padding-x: 1.75rem;
+$nav-link-font-size: 1.4rem;
+$nav-link-font-weight: 600;
+$nav-link-padding-x: 1.5rem;
+
+// Footer
+$footer-height: 30rem;
+$footer-height-mobile: 30rem;
+
+// Transition Speed
+$transition-speed: 0.25s;
+
+// Grid Spacing
+$grid-gutter-width: 3rem !default;
+
+// Overlay
+$overlays: 6;
+
+// Input
+$input-bg: transparent;
+$input-border-radius: 0;
+$input-border-color: transparentize(#f5f5f5, 0.35);
+//$input-focus-border-color: $p-dark;
+
+// Input Validation
+//$form-feedback-font-size: 12px;
+//$form-feedback-font-style:          $form-text-font-style;
+//$form-feedback-valid-color:         $success;
+//$form-feedback-invalid-color:       $danger;
+
+// Modal
+$modal-content-border-radius: 5rem;
+
+// Background Colors
+$bg-color-sets: (
+    primary: $dot-primary,
+    dark: $dot-dark,
+);
+
+// Font Sizes
+$font-sizes-set: (
+    10: 1rem,
+    12: 1.2rem,
+    14: 1.4rem,
+    16: 1.6rem,
+    18: 1.8rem,
+    20: 2rem,
+    24: 2.4rem,
+    28: 2.8rem,
+    30: 3rem,
+    40: 4rem,
+    50: 5rem,
+    60: 6rem,
+    70: 7rem,
+    80: 8rem,
+    90: 9rem,
+    100: 10rem,
+);
+
+// Font Weight
+$font-weights-set: 100, 200, 300, 400, 600, 700;
+
+// Font Letter Spacing
+$font-letter-spacing-set: (
+    1: 0.1rem,
+    2: 0.2rem,
+    3: 0.3rem,
+    4: 0.4rem,
+    5: 0.5rem,
+);

@@ -1,0 +1,34 @@
+.input {
+    &--rounded {
+        @include input-rounded;
+        @include input-rounded-size();
+
+        border: solid 0.1rem transparentize($dot-primary, 0.75);
+
+        @include media-breakpoint-up(md) {
+            padding: 1rem 2rem;
+        }
+
+        &.input--lg {
+            @extend %fs-24, %fs-md-28;
+
+            @include media-breakpoint-up(md) {
+                @include btn-rounded-size(5rem);
+                padding: 1.5rem 3rem;
+            }
+        }
+    }
+}
+
+input {
+    &[type='number'] {
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+
+        -moz-appearance: textfield;
+    }
+}

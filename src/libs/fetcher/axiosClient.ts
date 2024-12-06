@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { ObjectProps } from '@/libs/@types';
 
-export type AxiosOptionsProps = { token?: string } & Pick<AxiosRequestConfig, 'withCredentials'>;
+export type AxiosOptionsProps = Pick<AxiosRequestConfig, 'withCredentials'>;
 
 export type AxiosParamsProps = {
     key: string;
@@ -11,7 +11,7 @@ export type AxiosParamsProps = {
 
 export type AxiosProps = {
     method: 'get' | 'post';
-    url: 'movies-entries' | 'movies-posters' | string;
+    url: 'movies-entries' | 'movies-posters' | 'next-api' | string;
     params?: AxiosParamsProps[];
     options?: { token?: string } & AxiosOptionsProps;
 };
@@ -27,16 +27,21 @@ export const axiosClient = async ({ method, url, params }: AxiosProps) => {
     let res: ObjectProps<string | any> = {};
     let err: ObjectProps<string | any> = {};
 
-    let axiosUrl: string = url;
+    let axiosUrl: string = `${process?.env?.NEXT_PUBLIC_NEXT_API_URL ?? ''}${url}`;
     if (url === 'movies-entries') {
-        axiosUrl = `${process.env.NEXT_PUBLIC_API_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
+        axiosUrl = `${process.env.NEXT_PUBLIC_API_URL}?apiKey=${process.env.API_KEY}`;
     }
     if (url === 'movies-posters') {
-        axiosUrl = `${process.env.NEXT_PUBLIC_API_POSTER_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
+        axiosUrl = `${process.env.NEXT_PUBLIC_API_POSTER_URL}?apiKey=${process.env.API_KEY}`;
     }
     if (params && params?.length > 0) {
-        params.forEach(({ key, value }: AxiosParamsProps) => {
-            axiosUrl += `&${key}=${value}`;
+        params.forEach(({ key, value }: AxiosParamsProps, i: number) => {
+            let divider = '&';
+            if (url !== 'movies-entries' && url !== 'movies-posters' && i === 0) {
+                divider = '?';
+            }
+
+            axiosUrl += `${divider}${key}=${value}`;
         });
     }
 
