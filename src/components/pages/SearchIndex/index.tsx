@@ -78,7 +78,7 @@ const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
 
             {(!entries?.movies || entries?.movies?.length === 0) && (
                 <Container className="my-4 text-center">
-                    <h4>Oops! Look&apos;s like we cannot find any movies</h4>
+                    <h4>Oops! We cannot find any movies</h4>
                 </Container>
             )}
         </>
