@@ -17,7 +17,7 @@ const ProfileLikesIndex = ({}: ProfileLikesIndexProps): React.ReactElement => {
         <>
             {moviesLike && (
                 <Card.Thumbnail
-                    className="gy-5 row-cols-3"
+                    className="gy-5 row-cols-2 row-cols-xl-3"
                     likeButton={{
                         onClick: likeClickButtonHandler,
                     }}

@@ -12,7 +12,9 @@ const ProfileLoginIndex = ({}: ProfileLoginIndexProps): React.ReactElement => {
             style={{ height: '100vh' }}>
             <Container>
                 <Row className="justify-content-center">
-                    <Col md={5}>
+                    <Col
+                        xs={10}
+                        md={5}>
                         <h1 className="text-center">Login</h1>
                         <Form.LoginAuth />
                     </Col>

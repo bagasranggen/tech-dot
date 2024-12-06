@@ -4,13 +4,18 @@
         @include input-rounded-size();
 
         border: solid 0.1rem transparentize($dot-primary, 0.75);
-        padding: 1rem 2rem;
+
+        @include media-breakpoint-up(md) {
+            padding: 1rem 2rem;
+        }
 
         &.input--lg {
-            @extend %fs-28;
-            @include btn-rounded-size(5rem);
+            @extend %fs-24, %fs-md-28;
 
-            padding: 1.5rem 3rem;
+            @include media-breakpoint-up(md) {
+                @include btn-rounded-size(5rem);
+                padding: 1.5rem 3rem;
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ const Navigation = ({ hasLogout }: NavigationProps): React.ReactElement => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
+                    <Nav className="mt-2 mt-lg-0 ms-auto text-center">
                         {!hasLogout && (
                             <Nav.Link
                                 as={Link}

@@ -31,7 +31,7 @@ const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
         <>
             <Container
                 as="section"
-                className="mt-15">
+                className="mt-8 mt-lg-15">
                 <Row className="justify-content-center">
                     <Col md={8}>
                         <Form.Search query={entries.search} />
@@ -41,40 +41,49 @@ const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
 
             <section>
                 <Container className="mt-10">
-                    <div className="d-flex align-items-center justify-content-between">
-                        <h1 className="mb-0 fs-18 fls-1 fw-light">
-                            Search result for: <b className="fw-bold">{entries.search}</b>
-                        </h1>
+                    <Row className="gy-3 align-items-center justify-content-md-between">
+                        <Col md="auto">
+                            <h1 className="mb-0 fs-18 fls-1 fw-light text-center text-md-start">
+                                Search result for: <b className="fw-bold">{entries.search}</b>
+                            </h1>
+                        </Col>
 
                         {entries.categories && (
-                            <ul className="list-inline text-end">
-                                <li className="list-inline-item fs-14 fls-3 text-uppercase fw-bold me-3">Category:</li>
-                                {entries.categories.map((item, i: number) => (
-                                    <li
-                                        key={i}
-                                        className="list-inline-item">
-                                        <Button.Main
-                                            as="button"
-                                            type="button"
-                                            onClick={() => {
-                                                router.push(`${pathname}?${createQueryString('type', item.handle)}`);
-                                            }}
-                                            className="fs-14 fls-3 text-uppercase">
-                                            {item.label}
-                                        </Button.Main>
+                            <Col md="auto">
+                                <ul className="list-inline text-center text-md-end">
+                                    <li className="list-inline-item d-block d-md-inline-block fs-14 fls-3 text-uppercase fw-bold  me-0 me-md-3">
+                                        Category:
                                     </li>
-                                ))}
-                            </ul>
+                                    {entries.categories.map((item, i: number) => (
+                                        <li
+                                            key={i}
+                                            className="list-inline-item">
+                                            <Button.Main
+                                                as="button"
+                                                type="button"
+                                                onClick={() => {
+                                                    router.push(
+                                                        `${pathname}?${createQueryString('type', item.handle)}`
+                                                    );
+                                                }}
+                                                className="fs-14 fls-3 text-uppercase">
+                                                {item.label}
+                                            </Button.Main>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Col>
                         )}
-                    </div>
+                    </Row>
                 </Container>
+
                 <hr />
             </section>
 
             {movies && (
                 <Container className="mt-3 mb-10">
                     <Card.Thumbnail
-                        className="gy-5 row-cols-4"
+                        className="gy-5 row-cols-2 row-cols-md-3 row-cols-xl-4"
                         likeButton={{
                             onClick: likeClickButtonHandler,
                         }}

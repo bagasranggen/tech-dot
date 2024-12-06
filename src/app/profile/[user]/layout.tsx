@@ -17,9 +17,11 @@ export default function Layout({ children }: Readonly<PropsWithChildren>) {
             <Navigation hasLogout />
 
             <Container className="mt-5">
-                <Row>
-                    <Col md={2}>
-                        <ul className="list-unstyled">
+                <Row className="gy-3">
+                    <Col
+                        lg={3}
+                        xl={2}>
+                        <ul className="list-unstyled d-flex d-lg-block gap-2 justify-content-center position-relative z-2">
                             {PROFILE_NAVIGATION.map((item, i: number) => {
                                 return (
                                     <li key={i}>
@@ -34,7 +36,11 @@ export default function Layout({ children }: Readonly<PropsWithChildren>) {
                             })}
                         </ul>
                     </Col>
-                    <Col md={10}>{children}</Col>
+                    <Col
+                        lg={9}
+                        xl={10}>
+                        {children}
+                    </Col>
                 </Row>
             </Container>
         </>

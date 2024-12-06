@@ -18,12 +18,15 @@ const MovieDetailIndex = ({ entries }: MovieDetailIndexProps): React.ReactElemen
         <>
             <Container
                 as="section"
-                className="mt-10">
-                <Row>
-                    <Col md={4}>
+                className="mt-6 mt-lg-10">
+                <Row className="gy-3 justify-content-center">
+                    <Col
+                        xs={9}
+                        md={6}
+                        lg={4}>
                         <Picture items={entries.poster} />
                     </Col>
-                    <Col md={8}>
+                    <Col lg={8}>
                         <h1>{entries.title}</h1>
 
                         <p>{entries.plot}</p>
