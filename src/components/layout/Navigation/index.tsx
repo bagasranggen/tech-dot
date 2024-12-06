@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 import { useUserStateContext } from '@/store/Context';
 
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useRouter } from 'next-nprogress-bar';
 
 import Link from '@/components/common/Link';
 

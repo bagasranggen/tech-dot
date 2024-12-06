@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 import { useUserStateContext } from '@/store/Context';
 
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next-nprogress-bar';
 
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';

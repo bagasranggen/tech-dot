@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next-nprogress-bar';
 
 import Input from '@/components/common/Input';
-// import Button from '@/components/common/Button';
 
 const SEARCH_FIELD_NAME = {
     SEARCH: 'search',

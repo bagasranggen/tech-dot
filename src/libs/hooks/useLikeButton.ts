@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 
 import { useMovieStateContext, useUserStateContext } from '@/store/Context';
 

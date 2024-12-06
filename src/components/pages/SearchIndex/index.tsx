@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 import { useMovieStateContext } from '@/store/Context';
 import { useLikeButton, useMovieList, useQueryString } from '@/libs/hooks';
 
 import { Col, Container, Row } from 'react-bootstrap';
+import { useRouter } from 'next-nprogress-bar';
 
 import Button from '@/components/common/Button';
 import Form from '@/components/common/Form';
