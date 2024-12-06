@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { ObjectProps } from '@/libs/@types';
 
-export type AxiosOptionsProps = { token?: string } & Pick<AxiosRequestConfig, 'withCredentials'>;
+export type AxiosOptionsProps = Pick<AxiosRequestConfig, 'withCredentials'>;
 
 export type AxiosParamsProps = {
     key: string;
@@ -27,7 +27,7 @@ export const axiosClient = async ({ method, url, params }: AxiosProps) => {
     let res: ObjectProps<string | any> = {};
     let err: ObjectProps<string | any> = {};
 
-    let axiosUrl: string = `${process.env?.NEXT_PUBLIC_NEXT_API_URL ?? ''}${url}`;
+    let axiosUrl: string = `${process?.env?.NEXT_PUBLIC_NEXT_API_URL ?? ''}${url}`;
     if (url === 'movies-entries') {
         axiosUrl = `${process.env.NEXT_PUBLIC_API_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
     }
