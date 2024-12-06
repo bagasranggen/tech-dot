@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.3",
     "cookies-next": "^5.0.2",
     "next": "15.0.3",
+    "next-nprogress-bar": "^2.3.15",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-bootstrap": "^2.10.6",
     "react-dom": "19.0.0-rc-66855b96-20241106",
