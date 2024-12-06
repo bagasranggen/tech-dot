@@ -45,7 +45,7 @@ const Search = ({ query }: SearchProps): React.ReactElement => {
                 type="search"
                 placeholder="Search movies..."
                 size="lg"
-                className="text-center"
+                align="center"
                 error={errors?.[SEARCH_FIELD_NAME.SEARCH]?.message}
                 hook={{
                     register,

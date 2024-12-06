@@ -7,15 +7,23 @@ import Base, { BaseProps } from '@/components/common/Input';
 
 export type RoundedProps = {
     size?: 'md' | 'lg';
+    align?: 'left' | 'center' | 'right';
     error?: string;
 } & BaseProps;
 
-const Rounded = forwardRef<HTMLInputElement, RoundedProps>(({ className, size, error, ...props }, ref) => {
+const Rounded = forwardRef<HTMLInputElement, RoundedProps>(({ className, size, error, align, ...props }, ref) => {
     let inputClass: ArrayString = ['form-control input--rounded'];
     if (size && size !== 'md') inputClass.push(`input--${size}`);
     if (error) inputClass.push('is-invalid');
+    if (align === 'center') inputClass.push('text-center');
+    if (align === 'right') inputClass.push('text-end');
     if (className) inputClass.push(className);
     inputClass = joinArrayString(inputClass);
+
+    let errorClass: ArrayString = ['invalid-feedback'];
+    if (align === 'center') errorClass.push('text-center');
+    if (align === 'right') errorClass.push('text-end');
+    errorClass = joinArrayString(errorClass);
 
     return (
         <>
@@ -24,7 +32,7 @@ const Rounded = forwardRef<HTMLInputElement, RoundedProps>(({ className, size, e
                 className={inputClass}
                 {...props}
             />
-            {error && <div className="invalid-feedback">{error}</div>}
+            {error && <div className={errorClass}>{error}</div>}
         </>
     );
 });

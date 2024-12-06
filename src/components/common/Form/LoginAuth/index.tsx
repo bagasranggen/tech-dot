@@ -29,7 +29,7 @@ const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        formState: { errors },
     } = useForm<AuthLoginFieldsFormProps>();
 
     const submitHandler = async (data: AuthLoginFieldsFormProps) => {
@@ -47,7 +47,8 @@ const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
             <Input.Rounded
                 type="email"
                 placeholder="Email"
-                className="text-center"
+                align="center"
+                error={errors?.[AUTH_LOGIN_FIELD_NAME.EMAIL]?.message}
                 hook={{
                     register,
                     name: AUTH_LOGIN_FIELD_NAME.EMAIL,
@@ -58,7 +59,9 @@ const LoginAuth = ({}: LoginAuthProps): React.ReactElement => {
             <Input.Rounded
                 type="password"
                 placeholder="Password"
-                className="mt-1 text-center"
+                className="mt-2"
+                align="center"
+                error={errors?.[AUTH_LOGIN_FIELD_NAME.PASSWORD]?.message}
                 hook={{
                     register,
                     name: AUTH_LOGIN_FIELD_NAME.PASSWORD,
