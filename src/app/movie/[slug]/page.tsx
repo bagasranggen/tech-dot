@@ -1,19 +1,14 @@
 import React from 'react';
 
 import { PageProps } from '@/libs/@types';
-import { axiosClient } from '@/libs/fetcher';
 
 import MovieDetailIndex from '@/components/pages/MovieDetailIndex';
+import { MovieDetailData } from '@/components/pages/MovieDetailIndex/data';
 
-const Page = async ({ params, searchParams }: PageProps): Promise<React.ReactElement> => {
-    const { res } = await axiosClient({
-        method: 'get',
-        url: 'movies-entries',
-        params: [{ key: 't', value: (await params).slug }],
-    });
-    console.log({ params: await params, searchParams: await searchParams, res });
+const Page = async ({ params }: PageProps): Promise<React.ReactElement> => {
+    const { entries } = await MovieDetailData({ params });
 
-    return <MovieDetailIndex />;
+    return <MovieDetailIndex entries={entries} />;
 };
 
 export default Page;

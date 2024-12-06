@@ -14,7 +14,7 @@ const ProfileLoginIndex = ({}: ProfileLoginIndexProps): React.ReactElement => {
                 <Row className="justify-content-center">
                     <Col md={5}>
                         <h1 className="text-center">Login</h1>
-                        <Form.LoginAuth />;
+                        <Form.LoginAuth />
                     </Col>
                 </Row>
             </Container>

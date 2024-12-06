@@ -3,11 +3,11 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
+import { useUserStateContext } from '@/store/Context';
+
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import Link from '@/components/common/Link';
-import { useUserStateContext } from '@/store/Context';
-// import Button from '@/components/common/Button';
 
 export type NavigationProps = {
     hasLogout?: boolean;
@@ -16,7 +16,6 @@ export type NavigationProps = {
 const Navigation = ({ hasLogout }: NavigationProps): React.ReactElement => {
     const router = useRouter();
     const { user, userLogoutHandler } = useUserStateContext();
-    // const { user } = ();
 
     return (
         <Navbar
@@ -24,7 +23,11 @@ const Navigation = ({ hasLogout }: NavigationProps): React.ReactElement => {
             className="bg-body-tertiary"
             sticky="top">
             <Container>
-                <Navbar.Brand href="/">Find Your Movies</Navbar.Brand>
+                <Navbar.Brand
+                    as={Link}
+                    href="/">
+                    Find Your Movies
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">

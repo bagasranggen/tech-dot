@@ -1,52 +1,30 @@
 import React from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-
 import Base, { BaseProps } from '@/components/common/Card/Base';
-import Button, { BaseAnchorProps } from '@/components/common/Button';
-import Picture, { BaseItemProps } from '@/components/common/Picture';
-
-export type ThumbnailItemProps = {
-    media: BaseItemProps[];
-    title: string;
-} & Pick<BaseAnchorProps, 'href'>;
+import ThumbnailItem, { ThumbnailItemProps } from '@/components/common/Card/Thumbnail/ThumbnailItem';
 
 export type ThumbnailProps = {
-    items: ThumbnailItemProps[];
-} & Omit<BaseProps, 'items'>;
+    items: Omit<ThumbnailItemProps, 'likeButton'>[];
+} & (Omit<BaseProps, 'items'> & Pick<ThumbnailItemProps, 'likeButton'>);
 
-const Thumbnail = ({ items, ...props }: ThumbnailProps): React.ReactElement => {
+const Thumbnail = ({ items, likeButton, ...props }: ThumbnailProps): React.ReactElement => {
     return (
         <Base
             {...props}
-            items={items.map((item: ThumbnailItemProps) => ({
-                children: (
-                    <div className="card-thumbnail">
-                        <Button
-                            as="button"
-                            className="btn p-0 card-thumbnail__icon">
-                            <FontAwesomeIcon
-                                icon={faHeart}
-                                size="2x"
-                            />
-                        </Button>
-                        <Button
-                            as="link"
-                            href={item.href}>
-                            <div className="">
-                                <Picture
-                                    className="d-block oly--30"
-                                    items={item.media}
-                                />
-                                <h4 className="card-thumbnail__title">{item.title}</h4>
-                            </div>
-                        </Button>
-                    </div>
-                ),
-            }))}
+            items={items.map((item: Omit<ThumbnailItemProps, 'likeButton'>) => {
+                return {
+                    children: (
+                        <ThumbnailItem
+                            likeButton={likeButton}
+                            {...item}
+                        />
+                    ),
+                };
+            })}
         />
     );
 };
 
 export default Thumbnail;
+
+export type * from './ThumbnailItem';

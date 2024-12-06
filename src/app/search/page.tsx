@@ -8,8 +8,6 @@ import SearchIndex from '@/components/pages/SearchIndex';
 const Page = async ({ searchParams }: PageProps): Promise<React.ReactElement> => {
     const { entries } = await SearchData({ searchParams: searchParams });
 
-    console.log(entries);
-
     return <SearchIndex entries={entries} />;
 };
 

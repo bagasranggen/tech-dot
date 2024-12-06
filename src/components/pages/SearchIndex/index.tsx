@@ -3,7 +3,8 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useQueryString } from '@/libs/hooks';
+import { useMovieStateContext } from '@/store/Context';
+import { useLikeButton, useMovieList, useQueryString } from '@/libs/hooks';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -21,7 +22,10 @@ export type SearchIndexProps = {
 
 const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
     const router = useRouter();
+    const { moviesLikeId } = useMovieStateContext();
     const { pathname, createQueryString } = useQueryString();
+    const { likeClickButtonHandler } = useLikeButton();
+    const { movies } = useMovieList({ movies: entries?.movies ?? [], likes: moviesLikeId });
 
     return (
         <>
@@ -67,11 +71,14 @@ const SearchIndex = ({ entries }: SearchIndexProps): React.ReactElement => {
                 <hr />
             </section>
 
-            {entries.movies && (
+            {movies && (
                 <Container className="mt-3 mb-10">
                     <Card.Thumbnail
                         className="gy-5 row-cols-4"
-                        items={entries.movies}
+                        likeButton={{
+                            onClick: likeClickButtonHandler,
+                        }}
+                        items={movies}
                     />
                 </Container>
             )}

@@ -1,5 +1,6 @@
 .btn {
     &--rounded {
+        @extend %text-uppercase, %fls-3;
         @include btn-rounded;
         @include btn-rounded-size();
 
@@ -8,7 +9,13 @@
         &.btn {
             &--primary {
                 background-color: $dot-primary;
-                color: $dot-light;
+                color: $light;
+
+                @include media-breakpoint-up(lg) {
+                    @include hover() {
+                        background-color: lighten($dot-primary, 10);
+                    }
+                }
             }
         }
     }

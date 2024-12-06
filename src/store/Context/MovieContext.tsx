@@ -39,7 +39,7 @@ export const MovieStateContextProvider = ({ children }: { children: React.ReactN
                 });
 
                 if (res.Response.toLowerCase() === 'true') {
-                    tmp.push(createMovieItem(res));
+                    tmp.push(createMovieItem(res, moviesLikeId));
                 }
             })
         );
@@ -50,6 +50,7 @@ export const MovieStateContextProvider = ({ children }: { children: React.ReactN
     useEffect(() => {
         if (!user) {
             setMoviesLike(undefined);
+            setMoviesLikeId([]);
         }
 
         if (user && user.likes.length > 0) {

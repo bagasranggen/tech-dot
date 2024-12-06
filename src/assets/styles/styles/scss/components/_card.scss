@@ -21,6 +21,10 @@
                     color: lighten($dot-secondary, 10);
                 }
             }
+
+            &--active {
+                color: $dot-secondary;
+            }
         }
 
         &__title {

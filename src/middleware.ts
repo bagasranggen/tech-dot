@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { COOKIE_LOGIN_KEY } from '@/libs/mock';
+import { getUserSession } from '@/libs/server-utils';
 
 export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
-    const isLoggedIn = request.cookies.get(COOKIE_LOGIN_KEY);
+    const session = await getUserSession();
 
     // Redirect to login page
-    if (!isLoggedIn && pathname !== '/profile/login') {
+    if (!session && pathname !== '/profile/login') {
         return NextResponse.redirect(new URL('/profile/login', request.url));
     }
 
     // Redirect to user page if user go to `/profile`
-    if (isLoggedIn && pathname === '/profile') {
-        return NextResponse.redirect(new URL(`/profile/${isLoggedIn.value}`, request.url));
+    if (session && pathname === '/profile') {
+        return NextResponse.redirect(new URL(`/profile/${session.value}`, request.url));
     }
 }
 
