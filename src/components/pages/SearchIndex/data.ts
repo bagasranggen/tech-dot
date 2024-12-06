@@ -1,8 +1,10 @@
 import { PageProps } from '@/libs/@types';
+
+import { MOVIE_CATEGORIES } from '@/libs/mock';
 import { axiosClient, AxiosParamsProps } from '@/libs/fetcher';
+import { createMovieItem } from '@/libs/factory';
 
 import { SearchIndexProps } from '@/components/pages/SearchIndex/index';
-import { MOVIE_CATEGORIES } from '@/libs/mock';
 
 export const SearchData = async ({
     searchParams,
@@ -24,15 +26,22 @@ export const SearchData = async ({
         params: movieSearchParams,
     });
 
+    const movies: SearchIndexProps['entries']['movies'] = [];
+    if (res?.Search?.length > 0) {
+        res.Search.forEach((item: any) => {
+            movies.push(createMovieItem(item));
+        });
+    }
+
     // Search by category "type"
     // movie, series, episode
 
-    console.log(res);
+    // console.log(res);
 
     return {
         entries: {
             search: (search as string) ?? '',
-            movies: res.Search,
+            movies,
             categories: MOVIE_CATEGORIES,
         },
     };
