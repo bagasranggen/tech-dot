@@ -18,7 +18,7 @@ export default function Layout({ children }: Readonly<PropsWithChildren>) {
 
             <Container className="mt-5">
                 <Row>
-                    <Col md={4}>
+                    <Col md={2}>
                         <ul className="list-unstyled">
                             {PROFILE_NAVIGATION.map((item, i: number) => {
                                 return (
@@ -34,7 +34,7 @@ export default function Layout({ children }: Readonly<PropsWithChildren>) {
                             })}
                         </ul>
                     </Col>
-                    <Col md={8}>{children}</Col>
+                    <Col md={10}>{children}</Col>
                 </Row>
             </Container>
         </>
