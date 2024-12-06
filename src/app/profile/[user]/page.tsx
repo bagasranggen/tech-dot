@@ -1,19 +1,16 @@
-'use client';
-
 import React from 'react';
+import { Metadata } from 'next';
 
-import { useUserStateContext } from '@/store/Context';
+import { PageProps } from '@/libs/@types';
 
-export type PageProps = {};
+import ProfileDashboardIndex from '@/components/pages/ProfileDashboardIndex';
+
+export const metadata: Metadata = {
+    title: 'Dashboard',
+};
 
 const Page = ({}: PageProps): React.ReactElement => {
-    const { user } = useUserStateContext();
-
-    return (
-        <>
-            <h1>Hi, {user?.name}!</h1>
-        </>
-    );
+    return <ProfileDashboardIndex />;
 };
 
 export default Page;
