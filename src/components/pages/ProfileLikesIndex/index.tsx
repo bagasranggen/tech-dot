@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useEffect } from 'react';
+
 import { useMovieStateContext } from '@/store/Context';
+
+import Card from '@/components/common/Card';
 
 export type ProfileLikesIndexProps = {};
 
@@ -20,7 +23,16 @@ const ProfileLikesIndex = ({}: ProfileLikesIndexProps): React.ReactElement => {
     //     }, 3000);
     // }, [moviesLikeId]);
 
-    return <>LIKES</>;
+    return (
+        <>
+            {moviesLike && (
+                <Card.Thumbnail
+                    className="gy-5 row-cols-3"
+                    items={moviesLike}
+                />
+            )}
+        </>
+    );
 };
 
 export default ProfileLikesIndex;

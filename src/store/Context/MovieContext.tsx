@@ -6,8 +6,11 @@ import { useUserStateContext } from '@/store/Context/root';
 import { UserProps } from '@/libs/mock';
 import { axiosClient } from '@/libs/fetcher';
 
+import { ThumbnailItemProps } from '@/components/common/Card';
+import { createMovieItem } from '@/libs/factory';
+
 export type MovieState = {
-    moviesLike: any[] | undefined;
+    moviesLike: ThumbnailItemProps[] | undefined;
     moviesLikeId: string[];
     setMoviesLikeId: React.Dispatch<React.SetStateAction<MovieState['moviesLikeId']>>;
 };
@@ -36,7 +39,7 @@ export const MovieStateContextProvider = ({ children }: { children: React.ReactN
                 });
 
                 if (res.Response.toLowerCase() === 'true') {
-                    tmp.push(res);
+                    tmp.push(createMovieItem(res));
                 }
             })
         );
