@@ -29,10 +29,10 @@ export const axiosClient = async ({ method, url, params }: AxiosProps) => {
 
     let axiosUrl: string = `${process?.env?.NEXT_PUBLIC_NEXT_API_URL ?? ''}${url}`;
     if (url === 'movies-entries') {
-        axiosUrl = `${process.env.NEXT_PUBLIC_API_URL}?apiKey=${process.env.API_KEY}`;
+        axiosUrl = `${process.env.NEXT_PUBLIC_API_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
     }
     if (url === 'movies-posters') {
-        axiosUrl = `${process.env.NEXT_PUBLIC_API_POSTER_URL}?apiKey=${process.env.API_KEY}`;
+        axiosUrl = `${process.env.NEXT_PUBLIC_API_POSTER_URL}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`;
     }
     if (params && params?.length > 0) {
         params.forEach(({ key, value }: AxiosParamsProps, i: number) => {
