@@ -62,6 +62,8 @@ export const MovieStateContextProvider = ({ children }: { children: React.ReactN
         if (moviesLikeId.length > 0) {
             getUserMovieLikes({ likes: moviesLikeId });
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [moviesLikeId]);
 
     const defaultContext = { moviesLike, moviesLikeId, setMoviesLikeId };
